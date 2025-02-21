@@ -10,7 +10,7 @@ namespace RealFeel
         private HttpClient client = new HttpClient();
         internal bool Busy;
 
-        internal void Send(int Strength, int SensorID = 0, bool IsPulse = false)
+        internal void Send(int Strength, int SensorID = 0, bool IsPulse = false, int PatternInterval = 200)
         {
             if (Busy)
             {
@@ -31,6 +31,7 @@ namespace RealFeel
                         new KeyValuePair<string, string>("Strength", Strength.ToString()),
                         new KeyValuePair<string, string>("SensorID", SensorID.ToString()),
                         new KeyValuePair<string, string>("IsPulse", (Strength != 0 && IsPulse).ToString()), // No strength  should be constant
+                        new KeyValuePair<string, string>("PatternInterval", PatternInterval.ToString()),
                     }), new CancellationTokenSource(900).Token).Result;
                 }
                 catch (Exception e)
@@ -49,6 +50,7 @@ namespace RealFeel
             public int Strength;
             public int SensorID; // Default Is 4 Max. User Can Adjust To More.
             public bool IsPulse;
+            public int PatternInterval = 200; // This is for IsPulse! - Must be 100 or more!
         }
     }
 }
