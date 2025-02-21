@@ -30,7 +30,7 @@ namespace RealFeel
                     {
                         new KeyValuePair<string, string>("Strength", Strength.ToString()),
                         new KeyValuePair<string, string>("SensorID", SensorID.ToString()),
-                        new KeyValuePair<string, string>("IsPulse", (Strength != 0 && Strength != 20 && IsPulse).ToString()), // No strength or full should be constant, for nothing or climax
+                        new KeyValuePair<string, string>("IsPulse", (Strength != 0 && IsPulse).ToString()), // No strength  should be constant
                     }), new CancellationTokenSource(900).Token).Result;
                 }
                 catch (Exception e)
